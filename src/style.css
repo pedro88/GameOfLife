@@ -1,0 +1,24 @@
+
+.root {
+    height: 100vh;
+    width: 100vw;
+}
+
+.line {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 30px;
+
+}
+
+.alive {
+    background-color: black;
+    height: 30px;
+    width: 30px;
+}
+.dead {
+    background-color: aquamarine;
+    height: 30px;
+    width: 30px;
+}
