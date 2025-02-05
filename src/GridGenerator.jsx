@@ -5,8 +5,8 @@ import NewGeneration from './NewGeneration'
 const GridGenerator = () => {
 
 
-    const lineCount = 15
-    const colCount = 15
+    const lineCount = 10    
+    const colCount = 10
     let cellsGrid = []
     let passedCellsGrid = []
     let stateBoolean
@@ -34,40 +34,6 @@ const GridGenerator = () => {
     console.log("grid at first: ", grid)
     // console.log(generateInitialGrid)
 
-    const checkDeadCellState = (line, column) => {
-        const sum =
-            passedCellsGrid[line - 1][column - 1].value +
-            passedCellsGrid[line - 1][column].value +
-            passedCellsGrid[line - 1][column + 1].value +
-            passedCellsGrid[line][column - 1].value +
-            passedCellsGrid[line][column + 1].value +
-            passedCellsGrid[line - 1][column + 1].value +
-            passedCellsGrid[line][column + 1].value +
-            passedCellsGrid[line + 1][column + 1].value
-
-        passedCellsGrid[line][column].alive === true ? aliveBoolean = true : aliveBoolean = false
-        sum === 3 ? stateBoolean = true : stateBoolean = false
-        console.log("DeadSomme: ", sum)
-        return (stateBoolean, aliveBoolean)
-    }
-
-    const checkAliveCellState = (line, column) => {
-        const sum =
-            passedCellsGrid[line - 1][column - 1].value +
-            passedCellsGrid[line - 1][column].value +
-            passedCellsGrid[line - 1][column + 1].value +
-            passedCellsGrid[line][column - 1].value +
-            passedCellsGrid[line][column + 1].value +
-            passedCellsGrid[line - 1][column + 1].value +
-            passedCellsGrid[line][column + 1].value +
-            passedCellsGrid[line + 1][column + 1].value
-        //console.log(sum)
-        passedCellsGrid[line][column].alive === true ? aliveBoolean = true : aliveBoolean = false
-        sum === 3 || sum === 2 ? stateBoolean = true : stateBoolean = false
-        console.log("AliveSomme: ", sum)
-        return (stateBoolean, aliveBoolean)
-    }
-
     const checkCellState = (line, column) => {
         const sum =
         passedCellsGrid[line - 1][column - 1].value +
@@ -75,10 +41,10 @@ const GridGenerator = () => {
         passedCellsGrid[line - 1][column + 1].value +
         passedCellsGrid[line][column - 1].value +
         passedCellsGrid[line][column + 1].value +
-        passedCellsGrid[line - 1][column + 1].value +
-        passedCellsGrid[line][column + 1].value +
+        passedCellsGrid[line + 1][column - 1].value +
+        passedCellsGrid[line+1][column].value +
         passedCellsGrid[line + 1][column + 1].value
-        
+
         passedCellsGrid[line][column].alive === true ? 
         (
             sum === 3 || sum === 2 ? stateBoolean = true : stateBoolean = false
@@ -98,13 +64,12 @@ const GridGenerator = () => {
         for (let i = 1; i < lineCount - 1; i++) {
             for (let j = 1; j < colCount - 1; j++) {
                 checkCellState(i, j)
+                cellsGrid[i][j].alive = stateBoolean
                 if (stateBoolean === true) {
                     console.log("vivant")
-                    cellsGrid[i][j].alive = stateBoolean
                     cellsGrid[i][j].value = 1
                 } else {
                     console.log("dead")
-                    cellsGrid[i][j].alive = stateBoolean
                     cellsGrid[i][j].value = 0
                 }
 
@@ -117,7 +82,12 @@ const GridGenerator = () => {
 
     const clearGrid = () => {
         console.log("clear grid")
-        const clearGrid = grid.map((nested) => nested.map((e) => e.alive = false))
+        const clearGrid = grid.map((nested) => nested.map(cell => ({ ...cell })))
+        clearGrid.forEach((nested) => nested.forEach((e) => {
+            e.alive = false
+            e.value = 0
+        }
+        ))
         setGrid(clearGrid)
     }
 
