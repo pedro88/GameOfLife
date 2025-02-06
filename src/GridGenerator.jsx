@@ -5,8 +5,8 @@ import NewGeneration from './NewGeneration'
 const GridGenerator = () => {
 
 
-    const lineCount = 10    
-    const colCount = 10
+    const lineCount = 50    
+    const colCount = 50
     let cellsGrid = []
     let passedCellsGrid = []
     let stateBoolean
