@@ -3,19 +3,21 @@ import Button from './Button'
 import NewGeneration from './NewGeneration'
 
 const GridGenerator = () => {
-
-
-    let lineCount = 10    
-    let colCount = 10
     let cellsGrid = []
     let passedCellsGrid = []
     let stateBoolean
     let aliveBoolean
+  
 
     const livingCell = { alive: true, value: 1 }
     const deadCell = { alive: false, value: 0 }
+    const [lineCount, setLineCount] = useState(20)
+    const [colCount, setColCount] = useState(20)
+    const [historic, setHistoric] = useState([])
 
+    //Build new grid with random value
     const generateInitialGrid = () => {
+        console.log("initialisation de la grille...")
         let initialGrid = []
         for (let i = 0; i < lineCount; i++) {
             const newLine = []
@@ -27,14 +29,19 @@ const GridGenerator = () => {
                     newLine.push(livingCell)
             }
         }
+        const h = []
+        h.push(initialGrid)
+        setHistoric(h)
         return initialGrid
     }
 
     const [grid, setGrid] = useState(generateInitialGrid)
     console.log("grid at first: ", grid)
-    // console.log(generateInitialGrid)
 
+    //Check the state of cells beetween 2 generation
     const checkCellState = (line, column) => {
+        passedCellsGrid = grid.map((nested) => nested.map(cell => ({ ...cell })))
+        //console.log("passedCell: ", passedCellsGrid)
         const sum =
         passedCellsGrid[line - 1][column - 1].value +
         passedCellsGrid[line - 1][column].value +
@@ -54,15 +61,12 @@ const GridGenerator = () => {
         return stateBoolean
     }
 
+    //Pass to the next generation
     const nextGen = () => {
-        // console.log("yoyoyo")
-        // console.log("grid in nextGen: ", grid)
         passedCellsGrid = grid.map((nested) => nested.map(cell => ({ ...cell })))
-        // console.log("passedGrid: ", passedCellsGrid)
         cellsGrid = grid.map((nested) => nested.map(cell => ({ ...cell })))
-        // console.log("cellsGrid: ", cellsGrid)
-        for (let i = 1; i < lineCount - 1; i++) {
-            for (let j = 1; j < colCount - 1; j++) {
+        for (let i = 2; i < lineCount - 2; i++) {
+            for (let j = 2; j < colCount - 2; j++) {
                 checkCellState(i, j)
                 cellsGrid[i][j].alive = stateBoolean
                 if (stateBoolean === true) {
@@ -72,14 +76,27 @@ const GridGenerator = () => {
                     console.log("dead")
                     cellsGrid[i][j].value = 0
                 }
-
             }
         }
         setGrid(cellsGrid)
-        console.log("grid: ", grid)
-
+        const h = historic.map((generation) => generation.map((nested) => nested.map(cell => ({...cell}))))
+        h.push(cellsGrid)
+        setHistoric(h)
+        //console.log("historic: ", historic)
     }
 
+    //Access to the previous generation
+    const previousGen = () => {
+        const h = historic.map((generation) => generation.map((nested) => nested.map(cell => ({...cell}))))
+        if (h.length>=2){
+            setGrid(h[h.length-2])
+            h.pop()
+            setHistoric(h)
+        }
+    }
+
+
+    //Clear all the grid
     const clearGrid = () => {
         console.log("clear grid")
         const clearGrid = grid.map((nested) => nested.map(cell => ({ ...cell })))
@@ -91,6 +108,7 @@ const GridGenerator = () => {
         setGrid(clearGrid)
     }
 
+    //Allow you to determine the value of each cell
     const changeValue = (e) => {
         console.log(e.target.id)
         const destructuredId = e.target.id.split(",")
@@ -103,6 +121,18 @@ const GridGenerator = () => {
         newGrid[destructuredId[0]].splice(destructuredId[1], 1, {alive : newAlive, value: newValue})
         console.log("destruc: ", newGrid)
         setGrid(newGrid)
+    }
+
+    const handleLineCntChange = (e) => {
+        const lineNbr = e.target.value
+        setLineCount(lineNbr)
+        setGrid(generateInitialGrid)
+    }
+
+    const handleColCntChange = (e) => {
+        const colNbr = e.target.value
+        setColCount(colNbr)
+        setGrid(generateInitialGrid)
     }
 
 
@@ -121,6 +151,9 @@ const GridGenerator = () => {
             <Button
                 nextGen={nextGen}
                 clearGrid={clearGrid}
+                handleColCntChange={handleColCntChange}
+                handleLineCntChange={handleLineCntChange}
+                prevGen={previousGen}
             />
 
             {
