@@ -5,8 +5,8 @@ import NewGeneration from './NewGeneration'
 const GridGenerator = () => {
 
 
-    const lineCount = 10    
-    const colCount = 10
+    let lineCount = 10    
+    let colCount = 10
     let cellsGrid = []
     let passedCellsGrid = []
     let stateBoolean
@@ -128,16 +128,7 @@ const GridGenerator = () => {
                     grid={grid}
                     changeValue={changeValue}
                 />
-                // grid.map((nested) =>
-                //     <div className='line'>
-                //     {nested.map((cell) =>
-                //     cell.alive === true ?
-                //     <div className='alive'></div>
-                //     :
-                //     <div className='dead'></div>
-                // )}
-                // </div>
-                // )
+
             }
         </div>
     )
