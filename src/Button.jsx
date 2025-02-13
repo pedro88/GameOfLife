@@ -2,7 +2,7 @@ import React from 'react'
 
 const Button = ({ prevGen, play, nextGen, clearGrid, handleColCntChange, handleLineCntChange }) => {
   return (
-    <div className='BtnContainer' >
+    <div className='BtnContainer flex-container' >
       <button onClick={prevGen}>Previous Generation</button>
       <button onClick={play}>Play</button>
       <button onClick={nextGen}>Next Generation</button>

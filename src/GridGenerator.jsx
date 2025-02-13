@@ -7,7 +7,7 @@ const GridGenerator = () => {
     let passedCellsGrid = []
     let stateBoolean
     let aliveBoolean
-  
+
 
     const livingCell = { alive: true, value: 1 }
     const deadCell = { alive: false, value: 0 }
@@ -36,28 +36,28 @@ const GridGenerator = () => {
     }
 
     const [grid, setGrid] = useState(generateInitialGrid)
-    console.log("grid at first: ", grid)
+    //console.log("grid at first: ", grid)
 
     //Check the state of cells beetween 2 generation
     const checkCellState = (line, column) => {
         passedCellsGrid = grid.map((nested) => nested.map(cell => ({ ...cell })))
         //console.log("passedCell: ", passedCellsGrid)
         const sum =
-        passedCellsGrid[line - 1][column - 1].value +
-        passedCellsGrid[line - 1][column].value +
-        passedCellsGrid[line - 1][column + 1].value +
-        passedCellsGrid[line][column - 1].value +
-        passedCellsGrid[line][column + 1].value +
-        passedCellsGrid[line + 1][column - 1].value +
-        passedCellsGrid[line+1][column].value +
-        passedCellsGrid[line + 1][column + 1].value
+            passedCellsGrid[line - 1][column - 1].value +
+            passedCellsGrid[line - 1][column].value +
+            passedCellsGrid[line - 1][column + 1].value +
+            passedCellsGrid[line][column - 1].value +
+            passedCellsGrid[line][column + 1].value +
+            passedCellsGrid[line + 1][column - 1].value +
+            passedCellsGrid[line + 1][column].value +
+            passedCellsGrid[line + 1][column + 1].value
 
-        passedCellsGrid[line][column].alive === true ? 
-        (
-            sum === 3 || sum === 2 ? stateBoolean = true : stateBoolean = false
-        ) : (
-            sum === 3 ? stateBoolean = true : stateBoolean = false
-        )
+        passedCellsGrid[line][column].alive === true ?
+            (
+                sum === 3 || sum === 2 ? stateBoolean = true : stateBoolean = false
+            ) : (
+                sum === 3 ? stateBoolean = true : stateBoolean = false
+            )
         return stateBoolean
     }
 
@@ -70,16 +70,16 @@ const GridGenerator = () => {
                 checkCellState(i, j)
                 cellsGrid[i][j].alive = stateBoolean
                 if (stateBoolean === true) {
-                    console.log("vivant")
+                    //console.log("vivant")
                     cellsGrid[i][j].value = 1
                 } else {
-                    console.log("dead")
+                    //console.log("dead")
                     cellsGrid[i][j].value = 0
                 }
             }
         }
         setGrid(cellsGrid)
-        const h = historic.map((generation) => generation.map((nested) => nested.map(cell => ({...cell}))))
+        const h = historic.map((generation) => generation.map((nested) => nested.map(cell => ({ ...cell }))))
         h.push(cellsGrid)
         setHistoric(h)
         //console.log("historic: ", historic)
@@ -87,9 +87,9 @@ const GridGenerator = () => {
 
     //Access to the previous generation
     const previousGen = () => {
-        const h = historic.map((generation) => generation.map((nested) => nested.map(cell => ({...cell}))))
-        if (h.length>=2){
-            setGrid(h[h.length-2])
+        const h = historic.map((generation) => generation.map((nested) => nested.map(cell => ({ ...cell }))))
+        if (h.length >= 2) {
+            setGrid(h[h.length - 2])
             h.pop()
             setHistoric(h)
         }
@@ -98,7 +98,7 @@ const GridGenerator = () => {
 
     //Clear all the grid
     const clearGrid = () => {
-        console.log("clear grid")
+        //console.log("clear grid")
         const clearGrid = grid.map((nested) => nested.map(cell => ({ ...cell })))
         clearGrid.forEach((nested) => nested.forEach((e) => {
             e.alive = false
@@ -110,16 +110,16 @@ const GridGenerator = () => {
 
     //Allow you to determine the value of each cell
     const changeValue = (e) => {
-        console.log(e.target.id)
+        //console.log(e.target.id)
         const destructuredId = e.target.id.split(",")
-        console.log(destructuredId)
+        //console.log(destructuredId)
         const newGrid = grid.map((nested) => nested.map(cell => ({ ...cell })))
-        console.log(newGrid)
+        //console.log(newGrid)
         const newAlive = e.target.className === "dead" ? true : false
         const newValue = e.target.className === "dead" ? 1 : 0
-        console.log("aliveState", newAlive)
-        newGrid[destructuredId[0]].splice(destructuredId[1], 1, {alive : newAlive, value: newValue})
-        console.log("destruc: ", newGrid)
+        //console.log("aliveState", newAlive)
+        newGrid[destructuredId[0]].splice(destructuredId[1], 1, { alive: newAlive, value: newValue })
+        //console.log("destruc: ", newGrid)
         setGrid(newGrid)
     }
 
@@ -136,7 +136,7 @@ const GridGenerator = () => {
     }
 
 
-    console.log("cellsGrid: ", cellsGrid)
+    //console.log("cellsGrid: ", cellsGrid)
 
 
     // useEffect(() => {
@@ -146,23 +146,27 @@ const GridGenerator = () => {
 
 
     return (
-        <div>
+        <div className='grid-container'>
+            <section className='section-button'>
+                <Button
+                    nextGen={nextGen}
+                    clearGrid={clearGrid}
+                    handleColCntChange={handleColCntChange}
+                    handleLineCntChange={handleLineCntChange}
+                    prevGen={previousGen}
+                />
+            </section>
 
-            <Button
-                nextGen={nextGen}
-                clearGrid={clearGrid}
-                handleColCntChange={handleColCntChange}
-                handleLineCntChange={handleLineCntChange}
-                prevGen={previousGen}
-            />
-
-            {
-                <NewGeneration
+            <section className='section-grid'>
+                <div className='gameoflife-grid'>
+                {
+                    <NewGeneration
                     grid={grid}
                     changeValue={changeValue}
-                />
-
-            }
+                    />
+                }
+                </div>
+            </section>
         </div>
     )
 }
