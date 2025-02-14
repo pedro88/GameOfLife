@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { use } from "react";
 
 const SidePanel = () => {
-	const [panel, setPanel] = useState(1);
+	const [panel, setPanel] = useState("0");
 	const [display, setDisplay] = useState("none");
-	const [popupDisplay, setPopupDisplay] = useState(0);
+	const [popupDisplay, setPopupDisplay] = useState("0");
 
 	const panelsArray = [
 		{
@@ -12,7 +12,6 @@ const SidePanel = () => {
 			text: [
 				"Game of life is created in 1970 by John Horton Conway",
 				"It's a zero player game",
-				"Evolution of the game is determined by its initial state",
 				"It's Turing Complete",
 				"It can simulate a universal constructor",
 			],
@@ -23,62 +22,34 @@ const SidePanel = () => {
 					image: [
 						"../public/ressources/John_H_Conway_2005_(cropped).jpg",
 					],
-					text: [
-						"Mathematician John Horton Conway in 2005",
-					],
-					className: [
-						"large",
-					]
+					text: ["Mathematician John Horton Conway in 2005"],
+					className: ["large"],
+					link: ["https://en.wikipedia.org/wiki/John_Horton_Conway"],
 				},
 				{
 					//zero player game
-					image: [
-
-						"",
-					],
-					text: [
-						"",
-					],
-					className: [
-						"large",
-					]
-				},
-				{
-					//Determine by initial state
-					image: [
-						"../public/ressources/codeSnippet/grid generator.png",
-					],
-					text: [
-						"",
-					],
-					className: [
-						"code",
-					]
+					image: ["../public/ressources/zeroplayerGame.png"],
+					text: [""],
+					className: ["large"],
+					link: ["https://en.wikipedia.org/wiki/Zero-player_game"],
 				},
 				{
 					//turing complete
-					image: [
-						"../public/ressources/History/turingComplete.jpg",
+					image: ["../public/ressources/History/turingComplete.jpg"],
+					text: ["turing complete game on Steam"],
+					className: ["large"],
+					link: [
+						"https://store.steampowered.com/app/1444480/Turing_Complete/",
 					],
-					text: [
-						"turing complete game on Steam",
-
-					],
-					className: [
-						"large",
-					]
 				},
 				{
 					//universale constructor
-					image: [
-						"",
+					image: [""],
+					text: [""],
+					className: ["large"],
+					link: [
+						"https://en.wikipedia.org/wiki/Von_Neumann_universal_constructor",
 					],
-					text: [
-						"",
-					],
-					className: [
-						"large",
-					]
 				},
 			],
 		},
@@ -97,48 +68,30 @@ const SidePanel = () => {
 					image: [
 						"../public/ressources/codeSnippet/check cell state.png",
 					],
-					text: [
-						"",
-					],
-					className: [
-						"code",
-					]
+					text: [""],
+					className: ["code"],
+					link: ["https://www.unfpa.org/swp2023/too-few"],
 				},
 				{
 					//next Gen
-					image: [
-						"../public/ressources/codeSnippet/aliveState.png",
-					],
-					text: [
-						"",
-					],
-					className: [
-						"code",
-					]
+					image: ["../public/ressources/codeSnippet/aliveState.png"],
+					text: [""],
+					className: ["code"],
+					link: ["https://en.wikipedia.org/wiki/John_Horton_Conway"],
 				},
 				{
 					//overpopulated
-					image: [
-						"../public/ressources/codeSnippet/deadState.png",
-					],
-					text: [
-						"",
-					],
-					className: [
-						"code",
-					]
+					image: ["../public/ressources/codeSnippet/deadState.png"],
+					text: [""],
+					className: ["code"],
+					link: ["https://en.wikipedia.org/wiki/Human_overpopulation"],
 				},
 				{
 					//reproduction
-					image: [
-						"../public/ressources/codeSnippet/nextGen.png",
-					],
-					text: [
-						"",
-					],
-					className: [
-						"code",
-					]
+					image: ["../public/ressources/codeSnippet/nextGen.png"],
+					text: [""],
+					className: ["code"],
+					link: ["https://en.wikipedia.org/wiki/Reproduction"],
 				},
 			],
 		},
@@ -170,13 +123,8 @@ const SidePanel = () => {
 						"KOK's galaxy",
 						"Pentadecathlon",
 					],
-					className: [
-						"small",
-						"small",
-						"small",
-						"small",
-						"small",
-					]
+					className: ["small", "small", "small", "small", "small"],
+					link: ["https://en.wikipedia.org/wiki/Still_life_(cellular_automaton)"],
 				},
 				{
 					//periodic structure
@@ -194,13 +142,8 @@ const SidePanel = () => {
 						"KOK's galaxy",
 						"Pentadecathlon",
 					],
-					className: [
-						"small",
-						"small",
-						"small",
-						"small",
-						"small",
-					]
+					className: ["small", "small", "small", "small", "small"],
+					link: ["https://en.wikipedia.org/wiki/Oscillator_(cellular_automaton)"],
 				},
 				{
 					//ships
@@ -214,11 +157,8 @@ const SidePanel = () => {
 						"LWSS - Light Medium & Heavy Weight SpaceShips",
 						"HWSS - Heavy Weight SpaceShip",
 					],
-					className: [
-						"small",
-						"small",
-						"small",
-					]
+					className: ["small", "small", "small"],
+					link: ["https://en.wikipedia.org/wiki/Spaceship_(cellular_automaton)"],
 				},
 				{
 					//puffers
@@ -231,10 +171,8 @@ const SidePanel = () => {
 						"LWSS - Light Medium & Heavy Weight SpaceShips",
 						"HWSS - Heavy Weight SpaceShip",
 					],
-					className: [
-						"long",
-						"long",
-					]
+					className: ["long", "long"],
+					link: ["https://en.wikipedia.org/wiki/Puffer_train"],
 				},
 				{
 					//canon
@@ -247,9 +185,8 @@ const SidePanel = () => {
 						"LWSS - Light Medium & Heavy Weight SpaceShips",
 						"HWSS - Heavy Weight SpaceShip",
 					],
-					className: [
-						"large",
-					]
+					className: ["large"],
+					link: ["https://en.wikipedia.org/wiki/Gun_(cellular_automaton)"],
 				},
 				{
 					//edenGarden
@@ -262,10 +199,8 @@ const SidePanel = () => {
 						"LWSS - Light Medium & Heavy Weight SpaceShips",
 						"HWSS - Heavy Weight SpaceShip",
 					],
-					className: [
-						"large",
-						"small"
-					]
+					className: ["large", "small"],
+					link: ["https://en.wikipedia.org/wiki/Garden_of_Eden_(cellular_automaton)"],
 				},
 				{
 					//spacefiller
@@ -275,9 +210,8 @@ const SidePanel = () => {
 						"LWSS - Light Medium & Heavy Weight SpaceShips",
 						"HWSS - Heavy Weight SpaceShip",
 					],
-					className: [
-						"large",
-					]
+					className: ["large"],
+					link: ["https://en.wikipedia.org/wiki/Spacefiller"],
 				},
 			],
 		},
@@ -334,7 +268,6 @@ const SidePanel = () => {
 							key={el}
 							id={panel + index}
 							onMouseEnter={handleMouseEnter}
-							
 						>
 							{el}
 						</li>
@@ -345,24 +278,37 @@ const SidePanel = () => {
 					alt=""
 				/> */}
 			</div>
-			<div className="popup" onMouseLeave={handleMouseLeave} style={{ display: display }}>
+			<div
+				className="popup"
+				onMouseLeave={handleMouseLeave}
+				style={{ display: display }}
+			>
 				{panelsArray[panel].popupContent[popupDisplay].image.map(
 					(e, index) => (
 						<div key={index} className="popup-item">
-							<img
-								className={panelsArray[panel].popupContent[popupDisplay].className[index]}
-								name={index.toString()} // Ensure `name` is a string
-								src={e}
-								alt={`Popup image ${index}`}
+							<a href={
+										panelsArray[panel].popupContent[
+											popupDisplay
+										].link[0]}>
+								<img
+									className={
+										panelsArray[panel].popupContent[
+											popupDisplay
+										].className[index]
+									}
+									name={index.toString()}
+									src={e}
+									alt={`Popup image ${index}`}
 								/>
-								<br/>
-							<label key={index} htmlFor={index.toString()}>
-								{
-									panelsArray[panel].popupContent[
-										popupDisplay
-									].text[index]
-								}
-							</label>
+								<br />
+								<label htmlFor={index.toString()}>
+									{
+										panelsArray[panel].popupContent[
+											popupDisplay
+										].text[index]
+									}
+								</label>
+							</a>
 						</div>
 					)
 				)}
