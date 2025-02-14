@@ -20,7 +20,7 @@ const SidePanel = () => {
 				{
 					//created in...
 					image: [
-						"../public/ressources/John_H_Conway_2005_(cropped).jpg",
+						"../ressources/John_H_Conway_2005_(cropped).jpg",
 					],
 					text: ["Mathematician John Horton Conway in 2005"],
 					className: ["large"],
@@ -28,14 +28,14 @@ const SidePanel = () => {
 				},
 				{
 					//zero player game
-					image: ["../public/ressources/zeroplayerGame.png"],
+					image: ["../ressources/zeroplayerGame.png"],
 					text: [""],
 					className: ["large"],
 					link: ["https://en.wikipedia.org/wiki/Zero-player_game"],
 				},
 				{
 					//turing complete
-					image: ["../public/ressources/History/turingComplete.jpg"],
+					image: ["../ressources/History/turingComplete.jpg"],
 					text: ["turing complete game on Steam"],
 					className: ["large"],
 					link: [
@@ -66,7 +66,7 @@ const SidePanel = () => {
 				{
 					//underpopulated
 					image: [
-						"../public/ressources/codeSnippet/check cell state.png",
+						"../ressources/codeSnippet/check cell state.png",
 					],
 					text: [""],
 					className: ["code"],
@@ -74,14 +74,14 @@ const SidePanel = () => {
 				},
 				{
 					//next Gen
-					image: ["../public/ressources/codeSnippet/aliveState.png"],
+					image: ["../ressources/codeSnippet/aliveState.png"],
 					text: [""],
 					className: ["code"],
 					link: ["https://en.wikipedia.org/wiki/John_Horton_Conway"],
 				},
 				{
 					//overpopulated
-					image: ["../public/ressources/codeSnippet/deadState.png"],
+					image: ["../ressources/codeSnippet/deadState.png"],
 					text: [""],
 					className: ["code"],
 					link: [
@@ -90,7 +90,7 @@ const SidePanel = () => {
 				},
 				{
 					//reproduction
-					image: ["../public/ressources/codeSnippet/nextGen.png"],
+					image: ["../ressources/codeSnippet/nextGen.png"],
 					text: [""],
 					className: ["code"],
 					link: ["https://en.wikipedia.org/wiki/Reproduction"],
@@ -112,11 +112,11 @@ const SidePanel = () => {
 				{
 					//stable structure
 					image: [
-						"../public/ressources/stablesStructures/JdlV_bloc_4.4.gif",
-						"../public/ressources/stablesStructures/JdlV_bloc_5.9.gif",
-						"../public/ressources/stablesStructures/JdlV_bloc_6.12a.gif",
-						"../public/ressources/stablesStructures/JdlV_bloc_6.16.gif",
-						"../public/ressources/stablesStructures/JdlV_bloc_40.182.gif",
+						"../ressources/stablesStructures/JdlV_bloc_4.4.gif",
+						"../ressources/stablesStructures/JdlV_bloc_5.9.gif",
+						"../ressources/stablesStructures/JdlV_bloc_6.12a.gif",
+						"../ressources/stablesStructures/JdlV_bloc_6.16.gif",
+						"../ressources/stablesStructures/JdlV_bloc_40.182.gif",
 					],
 					text: [
 						"A single oscillator",
@@ -133,11 +133,11 @@ const SidePanel = () => {
 				{
 					//periodic structure
 					image: [
-						"../public/ressources/periodic structure/JdlV_osc_3.169.gif",
-						"../public/ressources/periodic structure/clock.gif",
-						"../public/ressources/periodic structure/funtain.gif",
-						"../public/ressources/periodic structure/kok galaxy.gif",
-						"../public/ressources/periodic structure/pentadecathlon.gif",
+						"../ressources/periodic structure/JdlV_osc_3.169.gif",
+						"../ressources/periodic structure/clock.gif",
+						"../ressources/periodic structure/funtain.gif",
+						"../ressources/periodic structure/kok galaxy.gif",
+						"../ressources/periodic structure/pentadecathlon.gif",
 					],
 					text: [
 						"A single oscillator",
@@ -154,9 +154,9 @@ const SidePanel = () => {
 				{
 					//ships
 					image: [
-						"../public/ressources/ships/ant.gif",
-						"../public/ressources/ships/LWS.gif",
-						"../public/ressources/ships/HWSS.gif",
+						"../ressources/ships/ant.gif",
+						"../ressources/ships/LWS.gif",
+						"../ressources/ships/HWSS.gif",
 					],
 					text: [
 						"An ant, smallest ship of the gmae",
@@ -171,8 +171,8 @@ const SidePanel = () => {
 				{
 					//puffers
 					image: [
-						"../public/ressources/puffers/Premier_puffeur_decouvert.jpg",
-						"../public/ressources/puffers/Puffeur.jpg",
+						"../ressources/puffers/Premier_puffeur_decouvert.jpg",
+						"../ressources/puffers/Puffeur.jpg",
 					],
 					text: [
 						"First puffer discovered (1971)",
@@ -185,8 +185,8 @@ const SidePanel = () => {
 				{
 					//canon
 					image: [
-						"../public/ressources/canon/350px-Game_of_life_glider_gun.png",
-						"../public/ressources/canon/Gospers_glider_gun.gif",
+						"../ressources/canon/350px-Game_of_life_glider_gun.png",
+						"../ressources/canon/Gospers_glider_gun.gif",
 					],
 					text: [
 						"First puffer discovered (1971)",
@@ -201,8 +201,8 @@ const SidePanel = () => {
 				{
 					//edenGarden
 					image: [
-						"../public/ressources/edenGarden/Garden_of_Eden_1.png",
-						"../public/ressources/edenGarden/Garden_of_Eden_4.png",
+						"../ressources/edenGarden/Garden_of_Eden_1.png",
+						"../ressources/edenGarden/Garden_of_Eden_4.png",
 					],
 					text: [
 						"First puffer discovered (1971)",
