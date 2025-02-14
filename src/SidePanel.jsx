@@ -84,7 +84,9 @@ const SidePanel = () => {
 					image: ["../public/ressources/codeSnippet/deadState.png"],
 					text: [""],
 					className: ["code"],
-					link: ["https://en.wikipedia.org/wiki/Human_overpopulation"],
+					link: [
+						"https://en.wikipedia.org/wiki/Human_overpopulation",
+					],
 				},
 				{
 					//reproduction
@@ -124,7 +126,9 @@ const SidePanel = () => {
 						"Pentadecathlon",
 					],
 					className: ["small", "small", "small", "small", "small"],
-					link: ["https://en.wikipedia.org/wiki/Still_life_(cellular_automaton)"],
+					link: [
+						"https://en.wikipedia.org/wiki/Still_life_(cellular_automaton)",
+					],
 				},
 				{
 					//periodic structure
@@ -143,7 +147,9 @@ const SidePanel = () => {
 						"Pentadecathlon",
 					],
 					className: ["small", "small", "small", "small", "small"],
-					link: ["https://en.wikipedia.org/wiki/Oscillator_(cellular_automaton)"],
+					link: [
+						"https://en.wikipedia.org/wiki/Oscillator_(cellular_automaton)",
+					],
 				},
 				{
 					//ships
@@ -158,7 +164,9 @@ const SidePanel = () => {
 						"HWSS - Heavy Weight SpaceShip",
 					],
 					className: ["small", "small", "small"],
-					link: ["https://en.wikipedia.org/wiki/Spaceship_(cellular_automaton)"],
+					link: [
+						"https://en.wikipedia.org/wiki/Spaceship_(cellular_automaton)",
+					],
 				},
 				{
 					//puffers
@@ -186,7 +194,9 @@ const SidePanel = () => {
 						"HWSS - Heavy Weight SpaceShip",
 					],
 					className: ["large"],
-					link: ["https://en.wikipedia.org/wiki/Gun_(cellular_automaton)"],
+					link: [
+						"https://en.wikipedia.org/wiki/Gun_(cellular_automaton)",
+					],
 				},
 				{
 					//edenGarden
@@ -200,7 +210,9 @@ const SidePanel = () => {
 						"HWSS - Heavy Weight SpaceShip",
 					],
 					className: ["large", "small"],
-					link: ["https://en.wikipedia.org/wiki/Garden_of_Eden_(cellular_automaton)"],
+					link: [
+						"https://en.wikipedia.org/wiki/Garden_of_Eden_(cellular_automaton)",
+					],
 				},
 				{
 					//spacefiller
@@ -286,10 +298,13 @@ const SidePanel = () => {
 				{panelsArray[panel].popupContent[popupDisplay].image.map(
 					(e, index) => (
 						<div key={index} className="popup-item">
-							<a href={
-										panelsArray[panel].popupContent[
-											popupDisplay
-										].link[0]}>
+							<a
+								href={
+									panelsArray[panel].popupContent[
+										popupDisplay
+									].link[0]
+								}
+							>
 								<img
 									className={
 										panelsArray[panel].popupContent[
