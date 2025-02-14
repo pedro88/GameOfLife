@@ -4,7 +4,7 @@ const Button = ({ prevGen, play, nextGen, clearGrid, handleColCntChange, handleL
   return (
     <div className='BtnContainer flex-container' >
       <button onClick={prevGen}>Previous Generation</button>
-      <button onClick={play}>Play</button>
+      <button onClick={play}>Play/Stop</button>
       <button onClick={nextGen}>Next Generation</button>
       <button onClick={clearGrid}>Clear Grid</button>
       <br />

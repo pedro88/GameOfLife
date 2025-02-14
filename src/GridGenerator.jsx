@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Button from "./Button";
 import NewGeneration from "./NewGeneration";
 import SidePanel from "./SidePanel";
@@ -13,6 +13,7 @@ const GridGenerator = () => {
 	const [lineCount, setLineCount] = useState(20);
 	const [colCount, setColCount] = useState(20);
 	const [historic, setHistoric] = useState([]);
+	const [playStop, setPlayStop] = useState(false)
 
 	//Build new grid with random value
 	const generateInitialGrid = () => {
@@ -149,6 +150,31 @@ const GridGenerator = () => {
 		setGrid(generateInitialGrid);
 	};
 
+	const play = async () => {
+		
+		setPlayStop(!playStop)
+		// let timeout = async ()=> {
+		// 	return new Promise((res) => setTimeout(() => res()), 1000)
+		//   }
+		//   while (playStop) {
+		// 	await timeout()
+		// 	console.log("yo")
+		// 	nextGen()
+		//   }
+
+		}
+		useEffect(() => {
+			let interval
+			if (playStop) { 
+			interval = setInterval(() => {
+			 nextGen();
+			}, 500);}
+			else{		  
+			return () => clearInterval(interval)}
+		  }, []);
+		
+
+
 	//console.log("cellsGrid: ", cellsGrid)
 
 	// useEffect(() => {
@@ -164,6 +190,7 @@ const GridGenerator = () => {
 					handleColCntChange={handleColCntChange}
 					handleLineCntChange={handleLineCntChange}
 					prevGen={previousGen}
+					play={play}
 				/>
 			</section>
 
