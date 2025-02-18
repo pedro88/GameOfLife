@@ -76,6 +76,7 @@ const GridGenerator = () => {
 
 	useEffect(() => {
 		setGrid(generateInitialGrid()); // Regénérer la grille avec les nouvelles dimensions
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [lineCount, colCount]);
 
 	//Pass to the next generation
@@ -207,11 +208,12 @@ const GridGenerator = () => {
 			clearInterval(intervalRef.current);
 		}
 		return () => clearInterval(intervalRef.current);
-	}, [playStop]);
+	}, [count, playStop, speed]);
 
 	useEffect(() => {
 		console.log(count);
 		count > 0 ? nextGen() : null;
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [count]);
 
 	//console.log("cellsGrid: ", cellsGrid)
