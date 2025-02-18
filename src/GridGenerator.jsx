@@ -15,7 +15,9 @@ const GridGenerator = () => {
 	const [historic, setHistoric] = useState([]);
 	const [playStop, setPlayStop] = useState(false)
 	const [count, setCount] = useState(0)
-	let counter = 0
+	const [speed, setSpeed] = useState(500)
+	const [counter, setCounter] = useState(0)
+
 
 	//Build new grid with random value
 	const generateInitialGrid = () => {
@@ -46,15 +48,22 @@ const GridGenerator = () => {
 		passedCellsGrid = grid.map((nested) =>
 			nested.map((cell) => ({ ...cell }))
 		);
+
+		const getValue = (i, j) => {
+			if (i < 0 || i >= lineCount || j < 0 || j >= colCount) {
+				return 0;
+			}
+			return passedCellsGrid[i][j].value;
+		};
 		const sum =
-			passedCellsGrid[line - 1][column - 1].value +
-			passedCellsGrid[line - 1][column].value +
-			passedCellsGrid[line - 1][column + 1].value +
-			passedCellsGrid[line][column - 1].value +
-			passedCellsGrid[line][column + 1].value +
-			passedCellsGrid[line + 1][column - 1].value +
-			passedCellsGrid[line + 1][column].value +
-			passedCellsGrid[line + 1][column + 1].value;
+		getValue(line - 1, column - 1) +
+		getValue(line - 1, column) +
+		getValue(line - 1, column + 1) +
+		getValue(line, column - 1) +
+		getValue(line, column + 1) +
+		getValue(line + 1, column - 1) +
+		getValue(line + 1, column) +
+		getValue(line + 1, column + 1);
 
 		passedCellsGrid[line][column].alive === true
 			? sum === 3 || sum === 2
@@ -66,15 +75,22 @@ const GridGenerator = () => {
 		return stateBoolean;
 	};
 
+	useEffect(() => {
+		setGrid(generateInitialGrid()); // Regénérer la grille avec les nouvelles dimensions
+	  }, [lineCount, colCount]);
+	  
+
 	//Pass to the next generation
 	const nextGen = () => {
 		// !playStop ? setCount(count+1) : null
+		 setCounter(counter + 1)
+		console.log("génération suivante...")
 		passedCellsGrid = grid.map((nested) =>
 			nested.map((cell) => ({ ...cell }))
 		);
 		cellsGrid = grid.map((nested) => nested.map((cell) => ({ ...cell })));
-		for (let i = 1; i < lineCount - 1; i++) {
-			for (let j = 1; j < colCount - 1; j++) {
+		for (let i = 0; i < lineCount ; i++) {
+			for (let j = 0; j < colCount ; j++) {
 				checkCellState(i, j);
 				cellsGrid[i][j].alive = stateBoolean;
 				if (stateBoolean === true) {
@@ -98,7 +114,7 @@ const GridGenerator = () => {
 
 	//Access to the previous generation
 	const previousGen = () => {
-		setCount(count -1)
+		setCounter(counter - 1 < 0 ? 0 : counter - 1)
 		const h = historic.map((generation) =>
 			generation.map((nested) => nested.map((cell) => ({ ...cell })))
 		);
@@ -112,7 +128,7 @@ const GridGenerator = () => {
 	//Clear all the grid
 	const clearGrid = () => {
 		//console.log("clear grid")
-		setCount(0)
+		setCounter(0)
 		const clearGrid = grid.map((nested) =>
 			nested.map((cell) => ({ ...cell }))
 		);
@@ -123,6 +139,8 @@ const GridGenerator = () => {
 			})
 		);
 		setGrid(clearGrid);
+		console.log(grid.length)
+		console.log(grid[0].length)
 	};
 
 	//Allow you to determine the value of each cell
@@ -157,6 +175,12 @@ const GridGenerator = () => {
 		setGrid(generateInitialGrid);
 	};
 
+	const handleSpeed = (e) => {
+		const speedSetter= e.target.value
+		setSpeed(speedSetter)
+		console.log(speed)
+	}
+
 	const play = async () => {
 		setPlayStop(!playStop)
 		console.log(playStop)
@@ -181,7 +205,7 @@ const intervalRef = useRef(null)
 				setCount(prevCount => prevCount+1)
 				console.log(count)
 				//nextGen()
-			}, 500)
+			}, speed)
 		} else {
 			console.log("clear")
 			clearInterval(intervalRef.current)
@@ -215,6 +239,8 @@ return () => clearInterval(intervalRef.current)
 					play={play}
 					lineCount={lineCount}
 					colCount={colCount}
+					handleSpeed={handleSpeed}
+					speed={speed}
 				/>
 			</section>
 
@@ -223,7 +249,9 @@ return () => clearInterval(intervalRef.current)
 			</section>
 
 			<section className="section-grid">
-			<h3>Generation : {count}</h3>
+			<h3>Generation : {counter}</h3>
+			<h3>Speed : {speed}ms</h3>
+
 				<div className="gameoflife-grid">
 					{<NewGeneration grid={grid} changeValue={changeValue} />}
 				</div>

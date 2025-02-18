@@ -267,9 +267,9 @@ const SidePanel = () => {
 						<th id="2" onClick={handleState}>
 							Main Structures
 						</th>
-						<th id="3" onClick={handleState}>
+						{/* <th id="3" onClick={handleState}>
 							Library
-						</th>
+						</th> */}
 					</tr>
 				</table>
 
