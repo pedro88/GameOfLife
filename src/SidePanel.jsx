@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { use } from "react";
+import { useState } from "react";
+//import { use } from "react";
 
 const SidePanel = () => {
 	const [panel, setPanel] = useState("0");
@@ -19,9 +19,7 @@ const SidePanel = () => {
 			popupContent: [
 				{
 					//created in...
-					image: [
-						"../ressources/John_H_Conway_2005_(cropped).jpg",
-					],
+					image: ["../ressources/John_H_Conway_2005_(cropped).jpg"],
 					text: ["Mathematician John Horton Conway in 2005"],
 					className: ["large"],
 					link: ["https://en.wikipedia.org/wiki/John_Horton_Conway"],
@@ -65,9 +63,7 @@ const SidePanel = () => {
 			popupContent: [
 				{
 					//underpopulated
-					image: [
-						"../ressources/codeSnippet/check cell state.png",
-					],
+					image: ["../ressources/codeSnippet/check cell state.png"],
 					text: [""],
 					className: ["code"],
 					link: ["https://www.unfpa.org/swp2023/too-few"],
@@ -245,7 +241,7 @@ const SidePanel = () => {
 		setDisplay("flex");
 		console.log(panelsArray[panel].popupContent[popupDisplay].image);
 	};
-	const handleMouseLeave = (e) => {
+	const handleMouseLeave = () => {
 		setPopupDisplay(0);
 		setDisplay("none");
 	};

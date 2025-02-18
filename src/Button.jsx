@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+//import React from "react";
 
 const Button = ({
 	prevGen,
@@ -9,8 +10,8 @@ const Button = ({
 	handleLineCntChange,
 	lineCount,
 	colCount,
-  handleSpeed,
-  speed
+	handleSpeed,
+	speed,
 }) => {
 	return (
 		<div className="BtnContainer flex-container">
