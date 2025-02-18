@@ -7,17 +7,20 @@ const GridGenerator = () => {
 	let cellsGrid = [];
 	let passedCellsGrid = [];
 	let stateBoolean;
-
+	
 	const livingCell = { alive: true, value: 1 };
 	const deadCell = { alive: false, value: 0 };
 	const [lineCount, setLineCount] = useState(20);
 	const [colCount, setColCount] = useState(20);
 	const [historic, setHistoric] = useState([]);
 	const [playStop, setPlayStop] = useState(false)
+	const [count, setCount] = useState(0)
+	let counter = 0
 
 	//Build new grid with random value
 	const generateInitialGrid = () => {
 		console.log("initialisation de la grille...");
+		setCount(0)
 		let initialGrid = [];
 		for (let i = 0; i < lineCount; i++) {
 			const newLine = [];
@@ -58,13 +61,14 @@ const GridGenerator = () => {
 				? (stateBoolean = true)
 				: (stateBoolean = false)
 			: sum === 3
-			? (stateBoolean = true)
-			: (stateBoolean = false);
+				? (stateBoolean = true)
+				: (stateBoolean = false);
 		return stateBoolean;
 	};
 
 	//Pass to the next generation
 	const nextGen = () => {
+		// !playStop ? setCount(count+1) : null
 		passedCellsGrid = grid.map((nested) =>
 			nested.map((cell) => ({ ...cell }))
 		);
@@ -82,6 +86,7 @@ const GridGenerator = () => {
 				}
 			}
 		}
+		//playStop===false ?  setCount(count +1) : null
 		setGrid(cellsGrid);
 		const h = historic.map((generation) =>
 			generation.map((nested) => nested.map((cell) => ({ ...cell })))
@@ -93,6 +98,7 @@ const GridGenerator = () => {
 
 	//Access to the previous generation
 	const previousGen = () => {
+		setCount(count -1)
 		const h = historic.map((generation) =>
 			generation.map((nested) => nested.map((cell) => ({ ...cell })))
 		);
@@ -106,6 +112,7 @@ const GridGenerator = () => {
 	//Clear all the grid
 	const clearGrid = () => {
 		//console.log("clear grid")
+		setCount(0)
 		const clearGrid = grid.map((nested) =>
 			nested.map((cell) => ({ ...cell }))
 		);
@@ -151,8 +158,11 @@ const GridGenerator = () => {
 	};
 
 	const play = async () => {
-		
 		setPlayStop(!playStop)
+		console.log(playStop)
+		setCount(count+1)
+
+
 		// let timeout = async ()=> {
 		// 	return new Promise((res) => setTimeout(() => res()), 1000)
 		//   }
@@ -162,17 +172,29 @@ const GridGenerator = () => {
 		// 	nextGen()
 		//   }
 
+	}
+			
+const intervalRef = useRef(null)
+	useEffect(() => {
+		if (playStop === true) {
+			intervalRef.current = setInterval(() => { 
+				setCount(prevCount => prevCount+1)
+				console.log(count)
+				//nextGen()
+			}, 500)
+		} else {
+			console.log("clear")
+			clearInterval(intervalRef.current)
 		}
-		useEffect(() => {
-			let interval
-			if (playStop) { 
-			interval = setInterval(() => {
-			 nextGen();
-			}, 500);}
-			else{		  
-			return () => clearInterval(interval)}
-		  }, []);
-		
+return () => clearInterval(intervalRef.current)
+
+	}, [playStop])
+
+	useEffect(() => {
+		console.log(count);
+		count > 0 ? nextGen() : null
+	}, [count]);
+
 
 
 	//console.log("cellsGrid: ", cellsGrid)
@@ -191,6 +213,8 @@ const GridGenerator = () => {
 					handleLineCntChange={handleLineCntChange}
 					prevGen={previousGen}
 					play={play}
+					lineCount={lineCount}
+					colCount={colCount}
 				/>
 			</section>
 
@@ -199,6 +223,7 @@ const GridGenerator = () => {
 			</section>
 
 			<section className="section-grid">
+			<h3>Generation : {count}</h3>
 				<div className="gameoflife-grid">
 					{<NewGeneration grid={grid} changeValue={changeValue} />}
 				</div>
