@@ -259,9 +259,6 @@ const SidePanel = () => {
 		setPopupDisplay(0);
 		setDisplay("none");
 	};
-	// useEffect(() => {
-	// 	setPopupDisplay(popupIndex)
-	// }, [popupIndex])
 
 	return (
 		<>
