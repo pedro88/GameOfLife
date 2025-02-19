@@ -1,7 +1,7 @@
 import { useState } from "react";
 //import { use } from "react";
 
-const SidePanel = () => {
+const SidePanel = ({handleLoadLibrary}) => {
 	const [panel, setPanel] = useState("0");
 	const [display, setDisplay] = useState("none");
 	const [popupDisplay, setPopupDisplay] = useState("0");
@@ -237,6 +237,25 @@ const SidePanel = () => {
 				},
 			],
 		},
+		{
+			name: "Library",
+				text: [
+					"block",
+					"blinker",
+					"glider",
+					"gosper glider gun"
+				],
+				picture: "../public/ressources/John_H_Conway_2005_(cropped).jpg",
+				popupContent: [
+					{
+						//created in...
+						image: ["../public/ressources/qr-code.png"],
+						text: [""],
+						className: ["large"],
+						link: ["https://pierre-react-game-of-life.netlify.app/"],
+					},
+				],
+			},
 	];
 
 	const handleState = (e) => {
@@ -260,6 +279,10 @@ const SidePanel = () => {
 		setDisplay("none");
 	};
 
+
+
+
+
 	return (
 		<>
 			<div className="div-side-panel">
@@ -274,26 +297,37 @@ const SidePanel = () => {
 						<th id="2" onClick={handleState}>
 							Main Structures
 						</th>
-						{/* <th id="3" onClick={handleState}>
-							Library
-						</th> */}
 						<th id="3" onClick={handleState}>
 							Link
+						</th>
+						<th id="4" onClick={handleState}>
+							Library
 						</th>
 					</tr>
 				</table>
 
 				<h2>{panelsArray[panel].name}</h2>
 				<ul>
-					{panelsArray[panel].text.map((el, index) => (
-						<li
-							key={el}
-							id={panel + index}
-							onMouseEnter={handleMouseEnter}
-						>
-							{el}
-						</li>
-					))}
+					{panel<4 ?	(
+						panelsArray[panel].text.map((el, index) => (
+							<li
+								key={el}
+								id={panel + index}
+								onMouseEnter={handleMouseEnter}
+							>
+								{el}
+							</li>					
+					))) : (
+						panelsArray[panel].text.map((el, index) => (
+							<li
+								key={el}
+								id={panel + index}
+								onClick={handleLoadLibrary}
+								data-value={el}								
+							>
+								{el}
+							</li>
+					)))}
 				</ul>
 				{/* <img
 					src="public\ressources\John_H_Conway_2005_(cropped).jpg"

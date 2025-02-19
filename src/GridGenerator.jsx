@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import Button from "./Button";
 import NewGeneration from "./NewGeneration";
 import SidePanel from "./SidePanel";
+import {block, blinker, glider, gosperGliderGun} from "./library"
+
+
 
 const GridGenerator = () => {
 	let cellsGrid = [];
@@ -194,6 +197,29 @@ const GridGenerator = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [count]);
 
+const handleLoadLibrary = (e) => {
+		console.log(e.target.dataset.value)
+		// setColCount(50)
+		// setLineCount(50)
+		console.log(e.target.dataset.value);
+		switch (e.target.dataset.value) {
+			case ("block"):
+				setGrid(block)
+				break			
+			case ("blinker") :
+				setGrid(blinker)
+				break
+			case ("glider"):
+				setGrid(glider)
+				break
+			case ("gosper glider gun"):
+				setGrid(gosperGliderGun)
+				break
+		}
+
+
+}
+
 
 	return (
 		<div className="grid-container">
@@ -215,7 +241,7 @@ const GridGenerator = () => {
 			</section>
 
 			<section className="section-side-panel">
-				<SidePanel />
+				<SidePanel handleLoadLibrary={handleLoadLibrary}/>
 			</section>
 
 			<section className="section-grid">
