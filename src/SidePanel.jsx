@@ -26,7 +26,7 @@ const SidePanel = () => {
 				},
 				{
 					//zero player game
-					image: ["../ressources/zeroplayerGame.png"],
+					image: ["../ressources/giphy.gif"],
 					text: [""],
 					className: ["large"],
 					link: ["https://en.wikipedia.org/wiki/Zero-player_game"],
@@ -42,7 +42,7 @@ const SidePanel = () => {
 				},
 				{
 					//universale constructor
-					image: [""],
+					image: ["../ressources/giphy (1).gif"],
 					text: [""],
 					className: ["large"],
 					link: [
@@ -66,14 +66,14 @@ const SidePanel = () => {
 					image: ["../ressources/codeSnippet/check cell state.png"],
 					text: [""],
 					className: ["code"],
-					link: ["https://www.unfpa.org/swp2023/too-few"],
+					link: ["https://github.com/pedro88/GameOfLife"],
 				},
 				{
 					//next Gen
 					image: ["../ressources/codeSnippet/aliveState.png"],
 					text: [""],
 					className: ["code"],
-					link: ["https://en.wikipedia.org/wiki/John_Horton_Conway"],
+					link: ["https://github.com/pedro88/GameOfLife"],
 				},
 				{
 					//overpopulated
@@ -81,7 +81,7 @@ const SidePanel = () => {
 					text: [""],
 					className: ["code"],
 					link: [
-						"https://en.wikipedia.org/wiki/Human_overpopulation",
+						"https://github.com/pedro88/GameOfLife",
 					],
 				},
 				{
@@ -89,7 +89,7 @@ const SidePanel = () => {
 					image: ["../ressources/codeSnippet/nextGen.png"],
 					text: [""],
 					className: ["code"],
-					link: ["https://en.wikipedia.org/wiki/Reproduction"],
+					link: ["https://github.com/pedro88/GameOfLife"],
 				},
 			],
 		},
@@ -115,11 +115,11 @@ const SidePanel = () => {
 						"../ressources/stablesStructures/JdlV_bloc_40.182.gif",
 					],
 					text: [
-						"A single oscillator",
-						"A clock",
-						"The Funtain",
-						"KOK's galaxy",
-						"Pentadecathlon",
+						"Simple block",
+						"The Boat",
+						"The Hive",
+						"The Barge",
+						"40 asymetric cells",
 					],
 					className: ["small", "small", "small", "small", "small"],
 					link: [
@@ -155,7 +155,7 @@ const SidePanel = () => {
 						"../ressources/ships/HWSS.gif",
 					],
 					text: [
-						"An ant, smallest ship of the gmae",
+						"The ant, smallest ship of the gmae",
 						"LWSS - Light Medium & Heavy Weight SpaceShips",
 						"HWSS - Heavy Weight SpaceShip",
 					],
@@ -172,8 +172,8 @@ const SidePanel = () => {
 					],
 					text: [
 						"First puffer discovered (1971)",
-						"LWSS - Light Medium & Heavy Weight SpaceShips",
-						"HWSS - Heavy Weight SpaceShip",
+						"Another puffer",
+						
 					],
 					className: ["long", "long"],
 					link: ["https://en.wikipedia.org/wiki/Puffer_train"],
@@ -185,9 +185,8 @@ const SidePanel = () => {
 						"../ressources/canon/Gospers_glider_gun.gif",
 					],
 					text: [
-						"First puffer discovered (1971)",
-						"LWSS - Light Medium & Heavy Weight SpaceShips",
-						"HWSS - Heavy Weight SpaceShip",
+						"Gosper Glider Gun",
+						"Gosper Glider Gun",
 					],
 					className: ["large"],
 					link: [
@@ -201,9 +200,8 @@ const SidePanel = () => {
 						"../ressources/edenGarden/Garden_of_Eden_4.png",
 					],
 					text: [
-						"First puffer discovered (1971)",
-						"LWSS - Light Medium & Heavy Weight SpaceShips",
-						"HWSS - Heavy Weight SpaceShip",
+						"Eden Garden",
+						"Eden Garden",
 					],
 					className: ["large", "small"],
 					link: [
@@ -220,6 +218,22 @@ const SidePanel = () => {
 					],
 					className: ["large"],
 					link: ["https://en.wikipedia.org/wiki/Spacefiller"],
+				},
+			],
+		},
+		{
+		name: "Link",
+			text: [
+				"Netlify Web App"
+			],
+			picture: "../public/ressources/John_H_Conway_2005_(cropped).jpg",
+			popupContent: [
+				{
+					//created in...
+					image: ["../public/ressources/qr-code.png"],
+					text: [""],
+					className: ["large"],
+					link: ["https://pierre-react-game-of-life.netlify.app/"],
 				},
 			],
 		},
@@ -266,6 +280,9 @@ const SidePanel = () => {
 						{/* <th id="3" onClick={handleState}>
 							Library
 						</th> */}
+						<th id="3" onClick={handleState}>
+							Link
+						</th>
 					</tr>
 				</table>
 
@@ -300,6 +317,7 @@ const SidePanel = () => {
 										popupDisplay
 									].link[0]
 								}
+								target="_blank"
 							>
 								<img
 									className={

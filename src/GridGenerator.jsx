@@ -40,7 +40,6 @@ const GridGenerator = () => {
 	};
 
 	const [grid, setGrid] = useState(generateInitialGrid);
-	//console.log("grid at first: ", grid)
 
 	//Check the state of cells beetween 2 generation
 	const checkCellState = (line, column) => {
@@ -69,19 +68,18 @@ const GridGenerator = () => {
 				? (stateBoolean = true)
 				: (stateBoolean = false)
 			: sum === 3
-			? (stateBoolean = true)
-			: (stateBoolean = false);
+				? (stateBoolean = true)
+				: (stateBoolean = false);
 		return stateBoolean;
 	};
 
 	useEffect(() => {
-		setGrid(generateInitialGrid()); // Regénérer la grille avec les nouvelles dimensions
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		setGrid(generateInitialGrid());
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [lineCount, colCount]);
 
 	//Pass to the next generation
 	const nextGen = () => {
-		// !playStop ? setCount(count+1) : null
 		setCounter(counter + 1);
 		console.log("génération suivante...");
 		passedCellsGrid = grid.map((nested) =>
@@ -93,22 +91,18 @@ const GridGenerator = () => {
 				checkCellState(i, j);
 				cellsGrid[i][j].alive = stateBoolean;
 				if (stateBoolean === true) {
-					//console.log("vivant")
 					cellsGrid[i][j].value = 1;
 				} else {
-					//console.log("dead")
 					cellsGrid[i][j].value = 0;
 				}
 			}
 		}
-		//playStop===false ?  setCount(count +1) : null
 		setGrid(cellsGrid);
 		const h = historic.map((generation) =>
 			generation.map((nested) => nested.map((cell) => ({ ...cell })))
 		);
 		h.push(cellsGrid);
 		setHistoric(h);
-		//console.log("historic: ", historic)
 	};
 
 	//Access to the previous generation
@@ -126,7 +120,6 @@ const GridGenerator = () => {
 
 	//Clear all the grid
 	const clearGrid = () => {
-		//console.log("clear grid")
 		setCounter(0);
 		const clearGrid = grid.map((nested) =>
 			nested.map((cell) => ({ ...cell }))
@@ -144,21 +137,16 @@ const GridGenerator = () => {
 
 	//Allow you to determine the value of each cell
 	const changeValue = (e) => {
-		//console.log(e.target.id)
 		const destructuredId = e.target.id.split(",");
-		//console.log(destructuredId)
 		const newGrid = grid.map((nested) =>
 			nested.map((cell) => ({ ...cell }))
 		);
-		//console.log(newGrid)
 		const newAlive = e.target.className === "dead" ? true : false;
 		const newValue = e.target.className === "dead" ? 1 : 0;
-		//console.log("aliveState", newAlive)
 		newGrid[destructuredId[0]].splice(destructuredId[1], 1, {
 			alive: newAlive,
 			value: newValue,
 		});
-		//console.log("destruc: ", newGrid)
 		setGrid(newGrid);
 	};
 
@@ -184,15 +172,6 @@ const GridGenerator = () => {
 		setPlayStop(!playStop);
 		console.log(playStop);
 		setCount(count + 1);
-
-		// let timeout = async ()=> {
-		// 	return new Promise((res) => setTimeout(() => res()), 1000)
-		//   }
-		//   while (playStop) {
-		// 	await timeout()
-		// 	console.log("yo")
-		// 	nextGen()
-		//   }
 	};
 
 	const intervalRef = useRef(null);
@@ -201,7 +180,6 @@ const GridGenerator = () => {
 			intervalRef.current = setInterval(() => {
 				setCount((prevCount) => prevCount + 1);
 				console.log(count);
-				//nextGen()
 			}, speed);
 		} else {
 			console.log("clear");
@@ -213,14 +191,9 @@ const GridGenerator = () => {
 	useEffect(() => {
 		console.log(count);
 		count > 0 ? nextGen() : null;
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [count]);
 
-	//console.log("cellsGrid: ", cellsGrid)
-
-	// useEffect(() => {
-	//     console.log("prout")
-	// }, [grid])
 
 	return (
 		<div className="grid-container">
@@ -237,6 +210,8 @@ const GridGenerator = () => {
 					handleSpeed={handleSpeed}
 					speed={speed}
 				/>
+				<h3>Generation : {counter}</h3>
+				<h3>Speed : {speed}ms</h3>
 			</section>
 
 			<section className="section-side-panel">
@@ -244,8 +219,7 @@ const GridGenerator = () => {
 			</section>
 
 			<section className="section-grid">
-				<h3>Generation : {counter}</h3>
-				<h3>Speed : {speed}ms</h3>
+
 
 				<div className="gameoflife-grid">
 					{<NewGeneration grid={grid} changeValue={changeValue} />}
